@@ -1,6 +1,8 @@
 # Introduction #
-
 This repository demonstrate a quick example for using ionic native plugin for Google AdMob in Ionic 2 apps. The app made in this example is based on [AdMob Ionic2 Demo by Jaivehall](https://github.com/jaivehall/admob-ionic2-demo). However, this example is completely rewritten for Ionic v2.3.0 & Ionic Native v3.4.4.
+
+# IMPORTANT #
+The Ad unit ID used in this demo is created for testing purposes, DO NOT abuse it or use it in your production application. If you would like to get your own, please [click here](https://apps.admob.com).
 
 # Issues #
 * The ionic native plugin may not work in Ionic View app. If it does not work, please use simulator or real device.
@@ -115,7 +117,7 @@ Xcode version: Not installed
 ```
 
 # IDE #
-* [Visual Studio Code](https://code.visualstudio.com/)
+* [Visual Studio Code v1.10.2](https://code.visualstudio.com/)
 
 # Last Updated #
-2017-Apr-04
+2017-Apr-05
