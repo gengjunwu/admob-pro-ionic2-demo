@@ -10,7 +10,7 @@ export class HomePage {
 
   public adSize: any;
   public adPosition: number;
-  public adAutoShow: boolean;
+  public adAutoShow: boolean = false;
   public adPositionOpts = {};
   public keys;
 

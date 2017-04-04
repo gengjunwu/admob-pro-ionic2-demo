@@ -26,14 +26,12 @@ export class AdmobPro {
     BOTTOM_CENTER: 8,
     BOTTOM_RIGHT: 9
   };
-  //public admobAutoShow: boolean;
   private admobId;
 
   constructor(private platform: Platform, private admob: AdMob) {
     console.log('Hello AdmobPro Provider');
     platform.ready().then(() => {
       this.admobId = {};
-      //this.admobAutoShow = false;
       
       // For Android
       if(platform.is('android')) {
@@ -87,14 +85,14 @@ export class AdmobPro {
     // Config default options to prepare Ads
     this.admobOpt = {
       // adId: String, // The ID of the ad to show
-      adSize: 'SMART_BANNER', // Banner type size
+      // adSize: 'SMART_BANNER', // Banner type size
       // width: Number, // Banner width, if set adSize to 'CUSTOM'
       // height: Number, // Banner height, if set adSize to 'CUSTOM'
-      position: this.admob.AD_POSITION.BOTTOM_CENTER, // Banner type default position
+      // position: this.admob.AD_POSITION.BOTTOM_CENTER, // Banner type default position
       // x: Number, // Default X of banner
       // y: Number, // Default Y of banner
       isTesting: true, // If set to true, to receive test ads
-      autoShow: true, // If set to true, no need call showBanner or showInterstitial
+      // autoShow: false, // If set to true, no need call showBanner or showInterstitial
       // adExtras: adExtras, // Extra ad setting options
       // overlap: Boolean, // Whether or not ads can overlap
       // orientationRenew: Boolean, // Refresh the render of the ad if the orientation changes
