@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Ionic 2 AdMob Pro Demo
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>Global Setting</ion-list-header>
+    <ion-item padding-bottom>
+      <ion-label>Auto show when ready</ion-label>
+      <ion-checkbox [(ngModel)]="adAutoShow"></ion-checkbox>
+    </ion-item>
+    <ion-list-header>Banner</ion-list-header>
+    <ion-item>
+      <ion-label>Banner Size</ion-label>
+      <ion-select [(ngModel)]="adSize">
+        <ion-option value="SMART_BANNER">SMART_BANNER</ion-option>
+        <ion-option value="MEDIUM_RECTANGLE">MEDIUM_RECTANGLE</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Banner Position</ion-label>
+      <ion-select [(ngModel)]="adPosition">
+        <ion-option  *ngFor="let key of keys" value="{{adPositionOpts[key]}}">{{key}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <div padding text-center>
+      <button *ngIf="!adAutoShow" ion-button (click)="createBanner()">Create Banner</button>
+      <button ion-button (click)="showBanner()">Show Banner</button>
+      <button ion-button (click)="hideBanner()">Hide Banner</button>
+      <button ion-button (click)="removeBanner()">Remove Banner</button>
+    </div>
+    <ion-list-header>Interstitial</ion-list-header>
+    <div padding text-center>
+      <button *ngIf="!adAutoShow" ion-button (click)="prepareInterstitial()">Prepare Interstitial</button>
+      <button ion-button (click)="showInterstitial()">Show Interstitial</button>
+    </div>
+  </ion-list>
+</ion-content>
