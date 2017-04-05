@@ -29,6 +29,8 @@ export class HomePage {
 
   showBanner() {
     console.log('showBanner() called.');
+    this.admobpro.admobOpt.adSize = this.adSize;
+    this.admobpro.admobOpt.position = this.adPosition;
     this.admobpro.admobOpt.autoShow = this.adAutoShow;
     this.admobpro.showBanner(this.adPosition);
   }
