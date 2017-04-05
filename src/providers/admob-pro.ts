@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AdMob, AdMobOptions, AdSize } from '@ionic-native/admob';
-import { Platform } from 'ionic-angular';
+import { Platform, AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 /*
@@ -27,8 +27,10 @@ export class AdmobPro {
     BOTTOM_RIGHT: 9
   };
   private admobId;
+  private bannerCreated: boolean = false;
+  private interstitialPrepared: boolean = false;
 
-  constructor(private platform: Platform, private admob: AdMob) {
+  constructor(private platform: Platform, private alertCtrl: AlertController, private admob: AdMob) {
     console.log('Hello AdmobPro Provider');
     platform.ready().then(() => {
       this.admobId = {};
@@ -112,6 +114,7 @@ export class AdmobPro {
     this.admobOpt.adId = this.admobId.interstitial; // Set adId before preparing interstitial Ad.
     return this.admob.prepareInterstitial(this.admobOpt)
     .then(() => {
+      this.interstitialPrepared = true;
       console.log('Ad interstitial is prepared, will be presented if autoShow is true, otherwise, call showInterstitial().');
     })
     .catch((err) => {
@@ -121,11 +124,17 @@ export class AdmobPro {
 
   showInterstitial() {
     if(this.admobOpt.autoShow) {
-      this.prepareInterstitial().then(() => {
-        this.admob.showInterstitial();
-      });
-    } else {
+      this.prepareInterstitial();
+    } else if(this.interstitialPrepared) {
       this.admob.showInterstitial();
+      this.interstitialPrepared = false;
+    } else {
+      let alert = this.alertCtrl.create({
+        title: 'Interstitial Ad Error',
+        message: 'The Prepare Interstitial button needs to be clicked first.',
+        buttons: ['Ok']
+      });
+      alert.present();
     }
   }
 
@@ -133,6 +142,7 @@ export class AdmobPro {
     this.admobOpt.adId = this.admobId.banner; // Set adId before creating banner Ad.
     return this.admob.createBanner(this.admobOpt)
     .then(() => {
+      this.bannerCreated = true;
       console.log('Ad banner is created, will be presented if autoShow is true, otherwise, call showBanner(position).');
     })
     .catch((err) => {
@@ -142,19 +152,29 @@ export class AdmobPro {
 
   showBanner(position){
     if(this.admobOpt.autoShow) {
-      this.createBanner().then(() => {
-        this.admob.showBanner(position);
-      });
-    } else {
+      this.createBanner();
+    } else if(this.bannerCreated) {
       this.admob.showBanner(position);
+      this.bannerCreated = false;
+    } else {
+      let alert = this.alertCtrl.create({
+        title: 'Banner Ad Error',
+        message: 'The Create Banner button needs to be clicked first.',
+        buttons: ['Ok']
+      });
+      alert.present();
     }
   }
 
   hideBanner() {
     this.admob.hideBanner();
+    this.bannerCreated = true;
   }
 
   removeBanner() {
-   	if(this.admob) this.admob.removeBanner();
+   	if(this.admob) {
+       this.admob.removeBanner();
+    }
+    this.bannerCreated = false;
   }
 }
