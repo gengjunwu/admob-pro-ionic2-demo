@@ -8,7 +8,6 @@ The Ad unit ID used in this demo is created for testing purposes, DO NOT abuse i
 * The ionic native plugin may not work in Ionic View app. If it does not work, please use simulator or real device.
 
 # Get Started #
-
 * Install Ionic 2, Cordova to your system if not installed
 ```
 $ npm install -g cordova ionic
@@ -62,7 +61,7 @@ import { Platform } from 'ionic-angular';
 import { AdmobPro } from '../../providers/admob-pro';
 ```
 
-* Refer to individule file for code detail.
+* Refer to individual file for code detail.
 
 # Run project #
 * Use Ionic CLI to build project, technically, this command is for compiling the project for testing, not for building for specific platform.
@@ -77,8 +76,8 @@ $ ionic upload
 
 * To run on the real device, you need to add platform.
 ```
-$ ionic plateform add android
-$ ionic plateform add ios
+$ ionic platform add android
+$ ionic platform add ios
 ```
 
 * After adding platform, run the following command to install app on real device
