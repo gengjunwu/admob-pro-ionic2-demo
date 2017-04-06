@@ -3,12 +3,6 @@ import { AdMob, AdMobOptions, AdSize } from '@ionic-native/admob';
 import { Platform, AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the AdmobPro provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class AdmobPro {
   
@@ -124,7 +118,10 @@ export class AdmobPro {
 
   showInterstitial() {
     if(this.admobOpt.autoShow) {
-      this.prepareInterstitial();
+      this.prepareInterstitial()
+      .then(() => {
+        this.interstitialPrepared = false;
+      });
     } else if(this.interstitialPrepared) {
       this.admob.showInterstitial();
       this.interstitialPrepared = false;
@@ -152,7 +149,10 @@ export class AdmobPro {
 
   showBanner(position){
     if(this.admobOpt.autoShow) {
-      this.createBanner();
+      this.createBanner()
+      .then(() => {
+        this.bannerCreated = false;
+      });
     } else if(this.bannerCreated) {
       this.admob.showBanner(position);
       this.bannerCreated = false;
